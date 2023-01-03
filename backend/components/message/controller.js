@@ -1,3 +1,4 @@
+const { resolve } = require("path");
 const store = require("./store");
 
 function addMessages(user, message) {
@@ -25,7 +26,20 @@ function getMessages(){
     })
 }
 
+function updateMessages(id, message) {
+    return new Promise(async (resolve, reject) => {
+        if (!id || !message){
+            reject("invalid data");
+            return false;
+        };
+        const result = await store.update(id, message);
+        resolve(result);
+    })
+    
+}
+
 module.exports = {
     addMessages,
-    getMessages
+    getMessages,
+    updateMessages
 }

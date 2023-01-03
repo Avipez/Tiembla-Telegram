@@ -24,7 +24,18 @@ router.post("/", (req, res) => {
         .catch( e => {
             response.error(req, res, "Información inválida", 400);
         });
-})
+});
+
+router.patch( "/:id", (req, res) => {
+    console.log(req.params.id);
+    controller.updateMessages(req.params.id, req.body.message)
+        .then((data) => {
+            response.success(req, res, data, 200);
+        })
+        .catch( e => {
+            response.error(req, res, "Error interno", 500, e)
+        });
+});
 
 router.put("/", (req, res) => {
     if(req.query.error == "ok"){
