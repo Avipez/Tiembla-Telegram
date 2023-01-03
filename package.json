@@ -1,0 +1,25 @@
+{
+  "name": "tiembla-telegram",
+  "version": "1.0.0",
+  "description": "Repositorio del Curso de Node.js: Base de Datos con MongoDB y WebSockets en Platzi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avipez/Tiembla-Telegram.git"
+  },
+  "keywords": [],
+  "author": "David <dg_lf@hotmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avipez/Tiembla-Telegram/issues"
+  },
+  "homepage": "https://github.com/Avipez/Tiembla-Telegram#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoos": "^0.0.1-security",
+    "nodemon": "^2.0.20"
+  }
+}
