@@ -16,13 +16,23 @@ function addMessages(message) {
     myMessage.save();
 };
 
-async function getMessages(filterUser) {
-    let filter = {};
-    if(filterUser !== null) {
-        filter = { user: filterUser}
-    }
-    const messages = await Model.find(filter);
-    return messages;
+function getMessages(filterUser) {
+    return new Promise(function (resolve, reject){
+        let filter = {};
+        if(filterUser !== null) {
+            filter = { user: filterUser}
+        }
+    
+        Model.find(filter)
+            .populate("user")
+            .exec((error, populated) => {
+                if(error) {
+                    reject(error);
+                    return false;
+                }
+                resolve(populated);
+            });
+    })
 };
 
 function removeMessages(id) {

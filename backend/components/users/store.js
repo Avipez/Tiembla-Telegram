@@ -5,7 +5,17 @@ function addUser(user) {
     return myUser.save();
 }
 
+async function getUsers(filterUser) {
+    let filter = {};
+    if(filterUser !== null) {
+        filter = { user: filterUser}
+    }
+    const users = await Model.find(filter)
+
+    return users;
+}
+
 module.exports = {
     add: addUser,
-
+    list: getUsers,
 }
