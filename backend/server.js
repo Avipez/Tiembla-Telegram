@@ -1,6 +1,10 @@
 const express = require("express");
 //const router = express.Router();//manera vieja de enrutar las peticiones
 
+const db = require("./db");
+
+db("mongodb+srv://avipez:Ev%4004Love@test-telegram.pkrxdwt.mongodb.net/test");
+
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));

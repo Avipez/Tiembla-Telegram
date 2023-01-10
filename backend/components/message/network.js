@@ -6,14 +6,15 @@ const router = express.Router();
 const response = require("../../network/response");
 
 
-router.get("/", (req, res) => {
-    controller.getMessages()
+router.get("/", function (req, res) {
+    const filterMessages = req.query.user || null;
+    controller.getMessages(filterMessages)
         .then((messageList => {
             response.success(req, res, messageList, 201)
         }))
         .catch( e => {
             response.error(req, res, "Unexpected error", 500, e)
-        });
+        })
 });
 
 router.post("/", (req, res) => {
@@ -43,16 +44,26 @@ router.put("/", (req, res) => {
     } else {
         response.success(req, res, "Actualizado exitosamente", 201)
     }
-    })
+    });
 
-router.delete("/", (req, res) => {
+/* router.delete("/", (req, res) => {
     console.log(req.headers);
     console.log(req.query);
     console.log(req.body);
     response.success(req, res, {
         "error": "No hay error xdxdxd",
         "body": "El mensaje se " + req.body + " ha elminado"})
-});
+}); */
+
+router.delete("/:id", (req, res) => {
+    controller.deleteMessage(req.params.id)
+    .then( () => {
+        response.success( req, res, `Mensaje ${req.params.id} eliminado`, 200);
+    })
+    .catch( e => {
+        response.error(req, res, "error interno", 500, e);
+    })
+})
 
 
 module.exports = router;
